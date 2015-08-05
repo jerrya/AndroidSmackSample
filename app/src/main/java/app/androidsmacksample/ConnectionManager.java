@@ -125,7 +125,7 @@ public class ConnectionManager extends Service {
         } else {
             createChatListener();
             // interface callback
-//            EventBus.getDefault().post(new MessageEvent(true));
+            mLoggedIn.onLoggedIn(true);
             Log.e(TAG, "Logged in");
         }
     }

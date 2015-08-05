@@ -4,13 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class LoginScreen extends Fragment {
+public class LoginScreen extends Fragment implements OnLoggedIn{
+
+    protected static final String TAG = "LoginScreen";
 
     private EditText mUsernameText, mPasswordText;
     private Button mLoginButton;
@@ -40,5 +44,20 @@ public class LoginScreen extends Fragment {
         mServiceIntent.putExtra("username", username);
         mServiceIntent.putExtra("password", password);
         getActivity().startService(mServiceIntent);
+    }
+
+    @Override
+    public void onLoggedIn(boolean successful) {
+        if(successful) {
+            Log.e(TAG, "Successful");
+
+            ChatScreen chatScreen = new ChatScreen();
+            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+            transaction.replace(R.id.fragment_container, chatScreen);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        } else {
+            Log.e(TAG, "Unable to enter");
+        }
     }
 }
