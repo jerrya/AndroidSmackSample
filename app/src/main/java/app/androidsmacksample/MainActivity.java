@@ -26,6 +26,11 @@ import org.jivesoftware.smack.SmackConfiguration;
 
 public class MainActivity extends FragmentActivity {
 
+    private static MainActivity inst;
+    public static MainActivity instance() {
+        return inst;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +46,12 @@ public class MainActivity extends FragmentActivity {
             loginScreen.setArguments(getIntent().getExtras());
             getSupportFragmentManager().beginTransaction().add(R.id.fragment_container, loginScreen).commit();
         }
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        inst = this;
     }
 
     @Override
