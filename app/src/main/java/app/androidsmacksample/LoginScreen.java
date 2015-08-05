@@ -1,5 +1,6 @@
 package app.androidsmacksample;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -23,7 +24,21 @@ public class LoginScreen extends Fragment {
         mPasswordText = (EditText) view.findViewById(R.id.passwordEditText);
 
         mLoginButton = (Button) view.findViewById(R.id.loginButton);
+        mLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                login(mUsernameText.getText().toString(), mPasswordText.getText().toString());
+            }
+        });
 
         return view;
+    }
+
+    public void login(String username, String password) {
+        Intent mServiceIntent = new Intent(getActivity(), ConnectionManager.class);
+        mServiceIntent.putExtra("event", 0);
+        mServiceIntent.putExtra("username", username);
+        mServiceIntent.putExtra("password", password);
+        getActivity().startService(mServiceIntent);
     }
 }

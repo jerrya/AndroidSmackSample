@@ -22,12 +22,16 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import org.jivesoftware.smack.SmackConfiguration;
+
 public class MainActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        SmackConfiguration.DEBUG = true;
 
         if(findViewById(R.id.fragment_container) != null) {
             if(savedInstanceState != null) {
