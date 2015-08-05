@@ -1,0 +1,1 @@
+#Android Smack Example Application
