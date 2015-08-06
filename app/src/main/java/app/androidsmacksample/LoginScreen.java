@@ -14,7 +14,7 @@ import android.widget.EditText;
 
 import de.greenrobot.event.EventBus;
 
-public class LoginScreen extends Fragment implements OnLoggedIn{
+public class LoginScreen extends Fragment {
 
     protected static final String TAG = "LoginScreen";
 
@@ -73,20 +73,5 @@ public class LoginScreen extends Fragment implements OnLoggedIn{
         mServiceIntent.putExtra("username", username);
         mServiceIntent.putExtra("password", password);
         getActivity().startService(mServiceIntent);
-    }
-
-    @Override
-    public void onLoggedIn(boolean successful) {
-        if(successful) {
-            Log.e(TAG, "Successful");
-
-            ChatScreen chatScreen = new ChatScreen();
-            FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragment_container, chatScreen);
-            transaction.addToBackStack(null);
-            transaction.commit();
-        } else {
-            Log.e(TAG, "Unable to enter");
-        }
     }
 }
