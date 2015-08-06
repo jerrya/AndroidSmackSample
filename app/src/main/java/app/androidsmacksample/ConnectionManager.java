@@ -15,27 +15,24 @@ import org.jivesoftware.smack.chat.ChatManagerListener;
 import org.jivesoftware.smack.tcp.XMPPTCPConnection;
 import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
 
+import de.greenrobot.event.EventBus;
+
 public class ConnectionManager extends Service {
 
     protected static final String TAG = "ConnectionManager";
 
-    protected static final String SERVICE_NAME = "";
-    protected static final String HOST_NAME = "";
+    protected static final String SERVICE_NAME = "localhost";
+    protected static final String HOST_NAME = "107.170.242.106";
 
     public static AbstractXMPPConnection mConnection;
     private XMPPTCPConnectionConfiguration mConnectionConfiguration;
 
     boolean startConnected = false;
 
-    private OnLoggedIn mLoggedIn;
-    public void onLoggedIn(OnLoggedIn mCallBack) {
-        this.mLoggedIn = mCallBack;
-    }
-
     private final IBinder mBinder = new ServiceBinder();
 
     public class ServiceBinder extends Binder {
-        ConnectionManager mService() {
+        ConnectionManager getService() {
             return ConnectionManager.this;
         }
     }
@@ -103,14 +100,12 @@ public class ConnectionManager extends Service {
                 } else {
                     Log.e(TAG, "Unable to connect");
                 }
-
             }
         }).start();
     }
 
     boolean loggedIn = true;
     public void connectionLogin(final String username, final String password) {
-
         try {
             mConnection.login();
         } catch (Exception e) {
@@ -124,8 +119,8 @@ public class ConnectionManager extends Service {
             loggedIn = true;
         } else {
             createChatListener();
-            // interface callback
-            mLoggedIn.onLoggedIn(true);
+            // UI callback
+            EventBus.getDefault().post(new LoggedInEvent(true));
             Log.e(TAG, "Logged in");
         }
     }

@@ -8,13 +8,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sender"
+        android:textColor="@android:color/holo_blue_dark"
         android:layout_alignParentTop="true"
         android:layout_margin="10dp"
         android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/list_message"
-        android:text="message"
+        android:text="Message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/list_sender"

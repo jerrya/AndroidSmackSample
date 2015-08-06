@@ -20,7 +20,7 @@ public class MyChatMessageListener implements ChatMessageListener {
         MainActivity.instance().runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                MUCFragment.instance().updateMessage(userNickame, newNickame, messageBody);
+                ChatScreen.instance().updateChatList(mChatSender, mChatMessage);
             }
         });
     }
