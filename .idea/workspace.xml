@@ -36,14 +36,15 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MainActivity.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/MainActivity.java">
+      <file leaf-file-name="MyChatMessageListener.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/MyChatMessageListener.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.82086957">
-              <caret line="54" column="4" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="4" />
+            <state vertical-scroll-proportion="0.84">
+              <caret line="23" column="81" selection-start-line="23" selection-start-column="81" selection-end-line="23" selection-end-column="81" />
               <folding>
-                <element signature="e#0#608#0" expanded="true" />
                 <element signature="imports" expanded="true" />
+                <element signature="e#854#1029#0" expanded="true" />
+                <element signature="e#1028#1029#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1506,8 +1507,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/login_screen_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/OnLoggedIn.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/MyChatMessageListener.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/chat_item_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
@@ -1518,6 +1517,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/ConnectionManager.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/LoggedInEvent.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/LoginScreen.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/MyChatMessageListener.java" />
       </list>
     </option>
   </component>
@@ -1962,18 +1963,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/MyChatMessageListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6573913">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#625#800#0" expanded="true" />
-            <element signature="e#799#800#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../Android and Eclipse/sdk/sources/android-22/android/os/AsyncTask.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.3321739">
@@ -2090,11 +2079,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.82086957">
-          <caret line="54" column="4" selection-start-line="54" selection-start-column="4" selection-end-line="54" selection-end-column="4" />
+        <state vertical-scroll-proportion="0.6347826">
+          <caret line="41" column="92" selection-start-line="41" selection-start-column="92" selection-end-line="41" selection-end-column="92" />
           <folding>
             <element signature="e#0#608#0" expanded="true" />
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/MyChatMessageListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.84">
+          <caret line="23" column="81" selection-start-line="23" selection-start-column="81" selection-end-line="23" selection-end-column="81" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#854#1029#0" expanded="true" />
+            <element signature="e#1028#1029#0" expanded="true" />
           </folding>
         </state>
       </provider>

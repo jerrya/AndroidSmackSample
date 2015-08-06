@@ -24,6 +24,9 @@ import android.view.MenuItem;
 
 import org.jivesoftware.smack.SmackConfiguration;
 
+/*
+* The MainActivity adds the initial fragment and enables Smack DEBUG
+* */
 public class MainActivity extends FragmentActivity {
 
     private static MainActivity inst;
@@ -36,6 +39,7 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Extremely useful debugging tool that shows you incoming and outgoing XMPP stanzas
         SmackConfiguration.DEBUG = true;
 
         if(findViewById(R.id.fragment_container) != null) {
