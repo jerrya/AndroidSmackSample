@@ -1,5 +1,8 @@
 package app.androidsmacksample;
 
+/*
+* This class is used for storing messages received and sent via XMPP
+* */
 public class ChatItem {
 
     private String sender;
@@ -14,15 +17,7 @@ public class ChatItem {
         return sender;
     }
 
-    public void setSender(String sender) {
-        this.sender = sender;
-    }
-
     public String getMessage() {
         return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 }
