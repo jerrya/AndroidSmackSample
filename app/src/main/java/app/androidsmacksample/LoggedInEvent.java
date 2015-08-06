@@ -1,5 +1,8 @@
 package app.androidsmacksample;
 
+/*
+* Used for eventbus callback purposes
+* */
 public class LoggedInEvent {
 
     private boolean successful;

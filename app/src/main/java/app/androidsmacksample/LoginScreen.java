@@ -14,6 +14,10 @@ import android.widget.EditText;
 
 import de.greenrobot.event.EventBus;
 
+/*
+* LoginScreen is the main screen which a user will see first.
+* 
+* */
 public class LoginScreen extends Fragment {
 
     protected static final String TAG = "LoginScreen";
