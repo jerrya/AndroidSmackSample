@@ -17,22 +17,32 @@ import org.jivesoftware.smack.tcp.XMPPTCPConnectionConfiguration;
 
 import de.greenrobot.event.EventBus;
 
+/*
+* The ConnectionManager class handles all of the XMPP connection (mainly log in and disconnection)
+* We implement a Service to preserve the connection long-term.
+* Ideally, you should also be implementing routine server pings to keep the connection alive (otherwise
+*   you may create a 'zombie connection' - a connection that's somewhat connected but unable to receive input)
+* */
 public class ConnectionManager extends Service {
 
     protected static final String TAG = "ConnectionManager";
 
+    /*
+    * SERVICE_NAME and HOST_NAME are your server details.
+    * Make sure you edit this with your own
+    * */
     protected static final String SERVICE_NAME = "localhost";
     protected static final String HOST_NAME = "107.170.242.106";
 
     public static AbstractXMPPConnection mConnection;
     private XMPPTCPConnectionConfiguration mConnectionConfiguration;
 
-    boolean startConnected = false;
+    private boolean startConnected = false;
 
     private final IBinder mBinder = new ServiceBinder();
 
     public class ServiceBinder extends Binder {
-        ConnectionManager getService() {
+        ConnectionManager mService() {
             return ConnectionManager.this;
         }
     }
@@ -43,13 +53,15 @@ public class ConnectionManager extends Service {
         return START_STICKY;
     }
 
+    // Handles incoming events
     protected void onHandleIntent(Intent intent) {
-
         if(intent == null) {
             Log.e(TAG, "Stopped service");
             return;
         }
 
+        // The event received is communicated via numbers
+        // i.e. 0 signifies logging in, 1 disconnecting, etc.
         int event = intent.getIntExtra("event", 1);
         switch(event) {
             // login
@@ -63,6 +75,7 @@ public class ConnectionManager extends Service {
                 break;
             default:
                 disconnect();
+                break;
         }
     }
 
@@ -71,18 +84,21 @@ public class ConnectionManager extends Service {
         return mBinder;
     }
 
-    public void startLogin(final String username, final String password) {
-
+    /*
+    * startLogin creates the connection for the log in process.
+    * First, a connection to the server must be established. After the connection
+    *   is established, then only can you process the login details.
+    * */
+    private void startLogin(final String username, final String password) {
         new Thread(new Runnable() {
             @Override
             public void run() {
-
                 mConnectionConfiguration = XMPPTCPConnectionConfiguration.builder()
-                        .setUsernameAndPassword(username, password)
-                        .setServiceName(SERVICE_NAME)
-                        .setHost(HOST_NAME)
-                        .setPort(5222)
-                        .setSecurityMode(ConnectionConfiguration.SecurityMode.disabled)
+                        .setUsernameAndPassword(username, password) // The username and password supplied by the user
+                        .setServiceName(SERVICE_NAME) // Service name
+                        .setHost(HOST_NAME) // Server host name
+                        .setPort(5222) // Incoming port (might depend on your XMPP server software)
+                        .setSecurityMode(ConnectionConfiguration.SecurityMode.disabled) // Security mode is disabled for example purposes
                         .build();
 
                 mConnection = new XMPPTCPConnection(mConnectionConfiguration);
@@ -91,11 +107,12 @@ public class ConnectionManager extends Service {
                     mConnection.connect();
                     startConnected = true;
                 } catch (Exception e) {
-                    Log.e(TAG, "Exception: " + e.getMessage());
+                    e.printStackTrace();
                 }
 
+                // If the connection is successful, we begin the login process
                 if(startConnected) {
-                    connectionLogin(username, password);
+                    connectionLogin();
                     Log.e(TAG, "Connected");
                 } else {
                     Log.e(TAG, "Unable to connect");
@@ -104,32 +121,42 @@ public class ConnectionManager extends Service {
         }).start();
     }
 
-    boolean loggedIn = true;
-    public void connectionLogin(final String username, final String password) {
+    private boolean loggedIn = true;
+    private void connectionLogin() {
         try {
             mConnection.login();
         } catch (Exception e) {
             loggedIn = false;
         }
 
+        // If the login fails, we disconnect from the server
         if(!loggedIn) {
             Log.e(TAG, "Unable to login");
 
             disconnect();
             loggedIn = true;
         } else {
+            // If the login succeeds, we implement the chat listener.
+            // It's important to implement the listener here so we can receive messages sent to us
+            //      when we're offline.
             createChatListener();
-            // UI callback
+            // Callback to LoginScreen to change the UI to the ChatScreen listview
             EventBus.getDefault().post(new LoggedInEvent(true));
             Log.e(TAG, "Logged in");
         }
     }
 
+    /*
+    * CreateChatListener implements the listener class for incoming chats.
+    * The class is MyChatMessageListener
+    * DISCLAIMER: You should be renewing the listener if the user logs in as another user, otherwise you may
+    *   have duplicate messages
+    * */
     private MyChatMessageListener mChatMessageListener;
-    public void createChatListener() {
+    private void createChatListener() {
         if(mConnection != null) {
             ChatManager chatManager = ChatManager.getInstanceFor(mConnection);
-            chatManager.setNormalIncluded(false);
+            chatManager.setNormalIncluded(false); // Eliminates a few debug messages
             chatManager.addChatListener(new ChatManagerListener() {
                 @Override
                 public void chatCreated(Chat chat, boolean createdLocally) {
@@ -143,7 +170,11 @@ public class ConnectionManager extends Service {
         }
     }
 
-    public void disconnect() {
+    /*
+    * This disconnection method is created here to validate if the connection is not null otherwise
+    *   it may crash the application.
+    * */
+    private void disconnect() {
         if(mConnection != null && mConnection.isConnected()) {
             new AsyncTask<Void, Void, Void>() {
                 @Override

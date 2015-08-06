@@ -36,13 +36,23 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ChatScreen.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/ChatScreen.java">
+      <file leaf-file-name="ConnectionManager.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/ConnectionManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6347826">
-              <caret line="110" column="71" selection-start-line="110" selection-start-column="71" selection-end-line="110" selection-end-column="71" />
+            <state vertical-scroll-proportion="0.37913042">
+              <caret line="174" column="37" selection-start-line="174" selection-start-column="37" selection-end-line="174" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1667#1668#0" expanded="true" />
+                <element signature="e#1720#1721#0" expanded="true" />
+                <element signature="e#2741#2742#0" expanded="true" />
+                <element signature="e#2771#2772#0" expanded="true" />
+                <element signature="e#3100#4387#0" expanded="true" />
+                <element signature="e#4386#4387#0" expanded="true" />
+                <element signature="e#5852#6286#0" expanded="true" />
+                <element signature="e#6285#6286#0" expanded="true" />
+                <element signature="e#6567#6862#0" expanded="true" />
+                <element signature="e#6861#6862#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -1511,12 +1521,12 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/LoggedInEvent.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/ConnectionManager.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/LoginScreen.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/chat_screen_layout.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/ChatAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/ChatItem.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/ChatScreen.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/ConnectionManager.java" />
       </list>
     </option>
   </component>
@@ -2067,22 +2077,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/ConnectionManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="152" column="32" selection-start-line="152" selection-start-column="32" selection-end-line="152" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/ChatScreen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.6347826">
           <caret line="110" column="71" selection-start-line="110" selection-start-column="71" selection-end-line="110" selection-end-column="71" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/app/androidsmacksample/ConnectionManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.37913042">
+          <caret line="174" column="37" selection-start-line="174" selection-start-column="37" selection-end-line="174" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1667#1668#0" expanded="true" />
+            <element signature="e#1720#1721#0" expanded="true" />
+            <element signature="e#2741#2742#0" expanded="true" />
+            <element signature="e#2771#2772#0" expanded="true" />
+            <element signature="e#3100#4387#0" expanded="true" />
+            <element signature="e#4386#4387#0" expanded="true" />
+            <element signature="e#5852#6286#0" expanded="true" />
+            <element signature="e#6285#6286#0" expanded="true" />
+            <element signature="e#6567#6862#0" expanded="true" />
+            <element signature="e#6861#6862#0" expanded="true" />
           </folding>
         </state>
       </provider>
