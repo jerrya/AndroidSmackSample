@@ -15,8 +15,12 @@ import android.widget.EditText;
 import de.greenrobot.event.EventBus;
 
 /*
-* LoginScreen is the main screen which a user will see first.
-* 
+* LoginScreen is the main screen which a user will see on startup.
+* It contains the following:
+*   - Username edit text
+*   - Password edit text
+*   - Login button
+* If the connection and login is successful, 'ChatScreen' is called
 * */
 public class LoginScreen extends Fragment {
 
@@ -37,6 +41,8 @@ public class LoginScreen extends Fragment {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // We send the login details to our login method.
+                // You should also be checking for length and valid input here.
                 login(mUsernameText.getText().toString(), mPasswordText.getText().toString());
             }
         });
@@ -57,6 +63,7 @@ public class LoginScreen extends Fragment {
     }
 
     // Called in Android UI's main thread
+    // If the login is successful, we initiate the transition to ChatScreen
     public void onEventMainThread(LoggedInEvent event) {
         if(event.isSuccessful()) {
             Log.e(TAG, "Successful login");
@@ -71,6 +78,7 @@ public class LoginScreen extends Fragment {
         }
     }
 
+    // We start the service via startService and pass the username and password along
     public void login(String username, String password) {
         Intent mServiceIntent = new Intent(getActivity(), ConnectionManager.class);
         mServiceIntent.putExtra("event", 0);
