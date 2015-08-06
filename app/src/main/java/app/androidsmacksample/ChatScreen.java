@@ -3,7 +3,6 @@ package app.androidsmacksample;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,7 +28,7 @@ public class ChatScreen extends ListFragment {
     private List<ChatItem> mChatList = new ArrayList<>();
     private boolean messageSent = false;
 
-    private EditText mMessageInput;
+    private EditText mMessageInput, mToUsername;
     private Button mSendButton;
 
     @Nullable
@@ -38,7 +37,15 @@ public class ChatScreen extends ListFragment {
         View view = inflater.inflate(R.layout.chat_screen_layout, container, false);
 
         mMessageInput = (EditText) view.findViewById(R.id.yourMessage);
+        mToUsername = (EditText) view.findViewById(R.id.toUsername);
+
         mSendButton = (Button) view.findViewById(R.id.sendButton);
+        mSendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                sendMessage(mToUsername.getText().toString(), mMessageInput.getText().toString());
+            }
+        });
 
         return view;
     }
